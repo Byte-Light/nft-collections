@@ -1,102 +1,135 @@
 import Button from "@/components/Button";
 import Wrapper from "@/components/Wrapper";
 import { colors } from "@/utils/colors";
-import { Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Flex, Heading, Image, Text, Box } from "@chakra-ui/react";
 import React from "react";
 
 const CollectionInfo = () => {
   return (
     <Flex
-      bg={colors.darkBg}
+      bgGradient={`linear(to-b, ${colors.darkBg}, #000)`}
       justify="center"
+      align="center"
       id="collection"
       position="relative"
-      pt={32}
+      py={16}
     >
+      {/* Decorative Images */}
       <Image
         src="/detail1.png"
         position="absolute"
-        w={150}
+        w={200}
         h={"auto"}
-        top={0}
-        right={32}
-        opacity={0.25}
+        top={8}
+        right={24}
+        opacity={0.15}
         zIndex={1}
       />
       <Image
         src="/detail2.png"
         position="absolute"
-        w={150}
+        w={200}
         h={"auto"}
-        bottom={0}
-        left={{ base: 8, lg: 32 }}
-        opacity={0.25}
+        bottom={8}
+        left={24}
+        opacity={0.15}
         zIndex={1}
       />
-      <Wrapper flexDir={{ base: "column", lg: "row" }} gap={8} zIndex={2}>
-        <Flex flexDir={"column"} w={{ base: "100%", lg: "50%" }} align="center">
-          <Flex
-            bg={colors.secondaryBg}
-            px={8}
-            pt={8}
-            borderRadius={24}
-            flexDir="column"
+
+      <Wrapper flexDir={{ base: "column", lg: "row" }} gap={12} zIndex={2}>
+        {/* Left Section: Image Card */}
+        <Flex
+          flexDir="column"
+          align="center"
+          w={{ base: "100%", lg: "50%" }}
+          bg={colors.secondaryBg}
+          p={6}
+          borderRadius={24}
+          boxShadow="0 8px 24px rgba(0, 0, 0, 0.3)"
+        >
+          <Image
+            src="/nfts/3.gif"
+            borderRadius={16}
+            w={{ base: 280, md: 350 }}
+            h={{ base: 320, md: 400 }}
+            objectFit="cover"
+            transition="transform 0.3s"
+            _hover={{
+              transform: "scale(1.05)",
+              boxShadow: "0 12px 36px rgba(0, 0, 0, 0.5)",
+            }}
+          />
+          <Heading
+            textAlign="center"
+            mt={4}
+            fontWeight={800}
+            fontSize={{ base: "xl", md: "2xl" }}
           >
-            <Image
-              src="/nfts/3.gif"
-              borderRadius={24}
-              w={350}
-              h={400}
-              objectFit="cover"
-            />
-            <Heading textAlign="center" mt={4} fontWeight={800} fontSize="2xl">
-              Researcher
-            </Heading>
-            <Text
-              textAlign="center"
-              mt={2}
-              mb={4}
-              fontWeight={600}
-              color={colors.darkerText}
-            >
-              #512
-            </Text>
-          </Flex>
+            Researcher
+          </Heading>
+          <Text
+            textAlign="center"
+            mt={2}
+            fontWeight={600}
+            color="gray.500"
+            letterSpacing="wide"
+          >
+            #512
+          </Text>
         </Flex>
-        <Flex flexDir={"column"} w={{ base: "100%", lg: "50%" }} gap={8}>
+
+        {/* Right Section: Description */}
+        <Flex
+          flexDir="column"
+          w={{ base: "100%", lg: "50%" }}
+          gap={6}
+          justify="center"
+        >
           <Text
             textTransform="uppercase"
             color={colors.primary}
             fontWeight={800}
+            fontSize="sm"
             textAlign={{ base: "center", lg: "left" }}
           >
             About the collection
           </Text>
           <Heading
             fontSize={{
-              base: "5xl",
-              sm: "5xl",
-              lg: "6xl",
-              xl: "6xl",
+              base: "3xl",
+              sm: "4xl",
+              lg: "5xl",
             }}
             textAlign={{ base: "center", lg: "left" }}
+            lineHeight={1.2}
           >
-            Unique Pixel artwork NFTs
+            Unique Pixel Artwork NFTs
           </Heading>
           <Text
-            color={colors.darkerText}
-            letterSpacing={1.2}
+            color="gray.300"
+            fontSize="lg"
+            letterSpacing={1.1}
             textAlign={{ base: "center", lg: "left" }}
           >
-            Have you heard of non-fungible tokens (NFTs)? They're like digital
-            certificates that certify something to be one-of-a-kind and not
-            interchangeable. NFTs are stored on a digital ledger called a
-            blockchain and can represent all kinds of cool digital assets like
-            photos, videos, and audio files. Best part? You can even sell and
-            trade NFTs just like physical items. Cool, huh?
+            Non-fungible tokens (NFTs) are digital certificates that verify the
+            uniqueness of digital assets like photos, videos, and audio files.
+            Stored on blockchains, NFTs enable trading and ownership in a way
+            that's revolutionizing the digital world. Start your collection
+            today!
           </Text>
-          <Flex>
-            <Button>Learn more</Button>
+          <Flex justify={{ base: "center", lg: "flex-start" }}>
+            <Button
+              px={8}
+              py={6}
+              fontSize="md"
+              transition="all 0.3s"
+              _hover={{
+                bg: colors.primaryHover,
+                transform: "scale(1.05)",
+              }}
+            >
+              Learn More
+            </Button>
           </Flex>
         </Flex>
       </Wrapper>

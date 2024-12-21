@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Divider, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { colors } from "@/utils/colors";
 import Wrapper from "@/components/Wrapper";
 import Button from "@/components/Button";
@@ -7,161 +15,131 @@ import ReactCurvedText from "react-curved-text";
 import Link from "next/link";
 
 const Header = () => {
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
+
   return (
     <Flex
-      bg={colors.darkBg}
+      bgGradient={`linear(to-b, ${colors.darkBg}, #000)`}
       bgImage={"/bg-circle.png"}
-      bgPos="center center"
+      bgPos="center"
       bgRepeat="no-repeat"
       bgSize="cover"
       minH="100vh"
-      minW="100vw"
-      h="100%"
       align="center"
       justify="center"
-      pb={{ base: 8, lg: 0 }}
       id="header"
+      p={4}
     >
-      <Wrapper gap={12} flexDir={{ base: "column", lg: "row" }} w="100%">
-        <Flex
-          display={{ base: "flex", lg: "none" }}
-          h={450}
-          position="relative"
-          mt={12}
-        >
-          <Text
-            zIndex={3}
-            transform="rotate(20deg)"
-            position="absolute"
-            top={0}
-            right={0}
-            color={colors.primary}
-            fontWeight={800}
-            textShadow="0px 0px 10px rgba(0,0,0,1)"
-          >
-            GET YOURS TODAY
-          </Text>
-          <Text
-            zIndex={3}
-            className="mint-text"
-            position="absolute"
-            top={5}
-            left={0}
-            color={colors.primary}
-            fontWeight={800}
-            textShadow="0px 0px 10px rgba(0,0,0,1)"
-          >
-            MINTING LIVE
-          </Text>
-          <Image
-            src="/nfts/2.png"
-            w={240}
-            h={360}
-            objectFit="cover"
-            borderRadius={24}
-            position="absolute"
-            top={24}
-            left={"25%"}
-            zIndex={2}
-            boxShadow="0px 0px 20px 0px rgba(0,0,0,0.5)"
-          />
-          <Image
-            src="/nfts/1.png"
-            w={240}
-            h={360}
-            objectFit="cover"
-            borderRadius={24}
-            position="absolute"
-            top={0}
-            right={"25%"}
-            zIndex={1}
-            boxShadow="0px 0px 20px 0px rgba(0,0,0,0.5)"
-          />
-        </Flex>
+      <Wrapper
+        gap={12}
+        flexDir={{ base: "column", lg: "row" }}
+        w="100%"
+        maxW="1200px"
+      >
+        {/* Left Section */}
         <Flex
           flexDir="column"
           gap={6}
           w={{ base: "100%", lg: "50%" }}
-          position="relative"
+          align={{ base: "center", lg: "flex-start" }}
         >
           {/* Symbols */}
           <Image
             src="/spiral.png"
-            w={8}
-            h={8}
+            w={10}
+            h={10}
             position="absolute"
-            top={0}
-            right={0}
+            top={4}
+            right={4}
             transform="rotate(45deg)"
+            opacity={0.8}
           />
 
           <Image
             src="/tri-spiral.png"
-            w={8}
-            h={8}
+            w={10}
+            h={10}
             position="absolute"
             bottom={200}
-            right={{base: "70%", lg: 100}}
+            right={isMobile ? "30%" : 100}
             transform="rotate(45deg)"
+            opacity={0.8}
           />
 
           <Text
             color={colors.primary}
-            fontWeight={800}
+            fontWeight="extrabold"
             textAlign={{ base: "center", lg: "left" }}
+            textShadow="0 0 20px rgba(255, 255, 255, 0.8)"
           >
             GET ON THE WHITELIST NOW
           </Text>
           <Heading
             fontSize={{
-              base: "5xl",
+              base: "4xl",
               sm: "5xl",
               lg: "6xl",
               xl: "7xl",
             }}
             textAlign={{ base: "center", lg: "left" }}
+            lineHeight="1.2"
           >
             THE RAREST{" "}
-            <Text as={"span"} color={colors.primary}>
+            <Text as="span" bgGradient="linear(to-r, teal.400, cyan.400)" bgClip="text">
               NFT
             </Text>{" "}
             DROP
           </Heading>
-          <Text letterSpacing={2} textAlign={{ base: "center", lg: "left" }}>
-            Mint an NFT of our collection and make your collection more
-            valuable.
+          <Text
+            fontSize="lg"
+            letterSpacing={1.2}
+            textAlign={{ base: "center", lg: "left" }}
+            color="gray.300"
+          >
+            Mint an NFT of our collection and make your portfolio more valuable
+            with rare digital assets.
           </Text>
           <Flex justify={{ base: "center", lg: "flex-start" }}>
             <Link href="#collection">
-              <Button>More info</Button>
+              <Button bgGradient="linear(to-r, teal.400, cyan.400)" color="white">
+                More Info
+              </Button>
             </Link>
           </Flex>
           <Flex
-            mt={{ base: 8, lg: "auto" }}
+            mt={8}
             align="center"
             flexDir={{ base: "column", lg: "row" }}
+            gap={4}
           >
-            <Text fontSize={48} fontWeight={700}>
-              9K+
-            </Text>
-            <Text ml={4} textTransform="uppercase" fontWeight={600}>
-              Minted
-            </Text>
-            <Divider orientation="vertical" mx={4} color="white" />
-            <Text fontSize={48} fontWeight={700}>
-              6K+
-            </Text>
-            <Text ml={4} textTransform="uppercase" fontWeight={600}>
-              Unique Holders
-            </Text>
+            <Flex align="center" gap={2}>
+              <Text fontSize="4xl" fontWeight="bold">
+                9K+
+              </Text>
+              <Text fontWeight="semibold" textTransform="uppercase" color="gray.300">
+                Minted
+              </Text>
+            </Flex>
+            <Divider orientation="vertical" h="50px" borderColor="gray.600" />
+            <Flex align="center" gap={2}>
+              <Text fontSize="4xl" fontWeight="bold">
+                6K+
+              </Text>
+              <Text fontWeight="semibold" textTransform="uppercase" color="gray.300">
+                Unique Holders
+              </Text>
+            </Flex>
           </Flex>
         </Flex>
+
+        {/* Right Section */}
         <Flex
           flexDir="row"
           w={{ base: "100%", lg: "50%" }}
           position="relative"
-          h={600}
-          display={{ base: "none", lg: "flex" }}
+          h={isMobile ? 450 : 600}
+          align="center"
+          justify="center"
         >
           <Box
             className="spin"
@@ -170,7 +148,9 @@ const Header = () => {
             zIndex={4}
             position="absolute"
             bottom={-10}
-            right={{ base: 0, xl: -10 }}
+            right={-10}
+            transform="rotate(0deg)"
+            animation="spin 10s linear infinite"
           >
             <ReactCurvedText
               width={250}
@@ -183,40 +163,39 @@ const Header = () => {
               text={"100% UNIQUE - 100% RARE - 100% FUN - 100% ART -"}
               textProps={{
                 style: {
-                  fontSize: 24,
-                  textShadow: "0px 0px 10px rgba(0,0,0,1)",
+                  fontSize: 18,
+                  fontWeight: "bold",
                 },
               }}
               textPathProps={{
                 fill: colors.primary,
-                letterSpacing: 3.5,
-                fontWeight: 800,
+                letterSpacing: 2,
               }}
             />
           </Box>
           <Image
             src="/nfts/2.png"
-            w={360}
-            h={500}
+            w={isMobile ? 240 : 360}
+            h={isMobile ? 360 : 500}
             objectFit="cover"
-            borderRadius={24}
+            borderRadius="lg"
             position="absolute"
             bottom={0}
             left={0}
             zIndex={3}
-            boxShadow="0px 0px 20px 0px rgba(0,0,0,0.5)"
+            boxShadow="0px 0px 30px rgba(0, 0, 0, 0.5)"
           />
           <Image
             src="/nfts/1.png"
-            w={360}
-            h={500}
+            w={isMobile ? 240 : 360}
+            h={isMobile ? 360 : 500}
             objectFit="cover"
-            borderRadius={24}
+            borderRadius="lg"
             position="absolute"
             top={0}
             right={0}
             zIndex={1}
-            boxShadow="0px 0px 20px 0px rgba(0,0,0,0.5)"
+            boxShadow="0px 0px 30px rgba(0, 0, 0, 0.5)"
           />
         </Flex>
       </Wrapper>
